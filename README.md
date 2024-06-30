@@ -1,4 +1,5 @@
 # GenAIus-Notes
+<<<<<<< HEAD
 A Smart Notes App that uses Generative AI
 
 Initial List of Dependencies:
@@ -17,3 +18,6 @@ cd myapp
 goto to myapp folder, run:
 npm start
 
+=======
+A Smart Notes App that uses Generative AI to summarize and add references
+>>>>>>> origin/main
