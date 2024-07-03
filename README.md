@@ -1,5 +1,10 @@
 # GenAIus-Notes
-A Smart Notes App that uses Generative AI
+Introducing a Smart Notes App that leverages Generative AI to summarize your notes and add relevant references—all while running locally to ensure your data remains private. :)
+
+This app is designed to enhance and refine your writing, taking care of the tedious tasks for you.
+
+Stay tuned for more updates.
+
 
 Initial List of Dependencies:
 
