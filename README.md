@@ -16,8 +16,8 @@ pip install langchain openai fastapi uvicorn
 pip install langchain_community tiktoken langchain-openai langchainhub chromadb
 pip install -U datasets transformers
 
-pip install ollama
-ollama pull gemma2
+Download and install Ollama onto the available supported platforms (including Windows Subsystem for Linux)
+Fetch available LLM model via ollama pull gemma2
 
 pip install -U datasets transformers
 pip install -U "huggingface_hub[cli]"
@@ -38,6 +38,4 @@ cd myapp
 goto to myapp folder, run:
 npm start
 
-
-=======
-
+======
