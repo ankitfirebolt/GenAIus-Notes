@@ -27,6 +27,7 @@ pip install torch torchdata
 Setup your Access Token: "export HF_TOKEN=<your-access-token>"
 pip install torch torchdata
 pip install fastapi
+fastapi dev api_controller.py
 
 nvm install v19.8.1
 nvm use v19.8.1
