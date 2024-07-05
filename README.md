@@ -17,7 +17,7 @@ pip install langchain_community tiktoken langchain-openai langchainhub chromadb
 pip install -U datasets transformers
 
 pip install torch==1.13.1 torchdata==0.5.1 --quiet
-    
+pip install fastapi
 
 nvm install v19.8.1
 nvm use v19.8.1
