@@ -1,17 +1,17 @@
 from datasets import load_dataset
-from transformers import AutoModelForSeq2SeqLM
-from transformers import AutoTokenizer
-from transformers import GenerationConfig
+import torch
+from langchain_community.llms import Ollama
+
 
 DATASET_NAME = "knkarthick/dialogsum"
-MODEL_NAME = 'google/flan-t5-base'
+MODEL_NAME = "gemma2"
+
 
 class ProcessNotes:
 
     def __init__(self, dataset_name, model_name):
         self.dataset = load_dataset(dataset_name)
-        self.model = AutoModelForSeq2SeqLM.from_pretrained(model_name)
-        self.tokenizer = AutoTokenizer.from_pretrained(model_name, use_fast=True)
+        self.llm = Ollama(model=MODEL_NAME)
     
 
     def generate_summary(self, input_notes):
@@ -22,18 +22,7 @@ class ProcessNotes:
 
         Summary:
             """
-
-        # Input constructed prompt instead of the dialogue.
-        inputs = self.tokenizer(prompt, return_tensors='pt')
-        output = self.tokenizer.decode(
-            self.model.generate(
-                inputs["input_ids"], 
-                max_new_tokens=50,
-            )[0], 
-            skip_special_tokens=True
-        )
-        
-        return output
+        return self.llm.invoke(prompt)
 
 if __name__ == '__main__':
     process_notes = ProcessNotes(DATASET_NAME, MODEL_NAME)
@@ -43,7 +32,7 @@ if __name__ == '__main__':
             dialogue = process_notes.dataset['test'][index]['dialogue']
             summary = process_notes.dataset['test'][index]['summary']
             output = process_notes.generate_summary(dialogue)
-            
+             
             dash_line = "--------------------------------"
             print(dash_line)
             print('Example ', i + 1)
@@ -53,4 +42,3 @@ if __name__ == '__main__':
             print(f'HUMAN SUMMARY:\n{summary}')
             print(dash_line)    
             print(f'MODEL GENERATION - ZERO SHOT:\n{output}\n')
-    

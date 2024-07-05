@@ -16,7 +16,16 @@ pip install langchain openai fastapi uvicorn
 pip install langchain_community tiktoken langchain-openai langchainhub chromadb
 pip install -U datasets transformers
 
-pip install torch==1.13.1 torchdata==0.5.1 --quiet
+pip install ollama
+ollama pull gemma2
+
+pip install -U datasets transformers
+pip install -U "huggingface_hub[cli]"
+pip install torch torchdata
+
+
+Setup your Access Token: "export HF_TOKEN=<your-access-token>"
+pip install torch torchdata
 pip install fastapi
 
 nvm install v19.8.1
@@ -28,4 +37,6 @@ cd myapp
 goto to myapp folder, run:
 npm start
 
+
 =======
+
