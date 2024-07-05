@@ -1,16 +1,16 @@
 import {  PrimaryButton, TextField, Spinner } from "@fluentui/react"
 import { useState } from "react";
 
-const SERVICE_ENDPOINT = "http://localhost:8000/summarize";
+const SERVICE_ENDPOINT = "http://localhost:8000/invoke";
 
 export default function Notes() {
   const [notes, setNotes] = useState<string>("")
-  const [summary, setSummary] = useState<string>("")
+  const [output, setOutput] = useState<string>("")
   const [loading, setLoading] = useState<boolean>(false)
 
-  const fetchSummary = async () => {
+  const fetchOutput = async () => {
     setLoading(true);
-    setSummary("");
+    setOutput("");
     const response = await fetch(SERVICE_ENDPOINT, {
       method: "POST",
       headers: {
@@ -19,7 +19,7 @@ export default function Notes() {
       body: JSON.stringify({ text: notes}),
     });
     const data = await response.json();
-    setSummary(data.summary);
+    setOutput(data.output);
     setLoading(false);
   };
 
@@ -29,8 +29,8 @@ export default function Notes() {
       <TextField label="Notes" multiline onChange={(_ev, value) => setNotes(_ev.currentTarget.value)} rows={20} />
 
       <br />    
-      <PrimaryButton onClick={fetchSummary}>Summarize</PrimaryButton>
-      {summary && <p>Summary: {summary}</p>}   
+      <PrimaryButton onClick={fetchOutput}>Enter</PrimaryButton>
+      {output && <p>{output}</p>}   
       {loading && <Spinner label="Loading..." />}
  </div>
   );

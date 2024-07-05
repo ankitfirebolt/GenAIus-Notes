@@ -19,8 +19,8 @@ class Notes(BaseModel):
 async def hello():
    return {"message": "Hello World"}
 
-@app.post("/summarize")
+@app.post("/invoke")
 async def summarize(notes: Notes):
-    process = ProcessNotes("knkarthick/dialogsum", "google/flan-t5-base")
-    summary = process.generate_summary(notes.text)
-    return {"summary": summary}
+    process = ProcessNotes("gemma2")
+    output = process.generate(notes.text)
+    return {"output": output}
