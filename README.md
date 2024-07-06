@@ -26,6 +26,12 @@ ollama pull mxbai-embed-large
 pip install pypdf
 Setup your Access Token: "export HF_TOKEN=<your-access-token>"
 
+
+pip install "unstructured[all-docs]"
+
+
+
+
 pip install torch torchdata
 pip install fastapi
 fastapi dev api_controller.py

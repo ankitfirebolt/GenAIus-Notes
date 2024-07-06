@@ -1,34 +1,34 @@
+from langchain_community.vectorstores import Chroma
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain_community.vectorstores import Chroma
-from langchain_core.output_parsers import StrOutputParser
-from langchain_core.runnables import RunnablePassthrough
-from langchain_community.document_loaders import PyPDFLoader, PyPDFDirectoryLoader
-from langchain_community.llms import Ollama
-from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.prompts import ChatPromptTemplate
-from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnablePassthrough
+from langchain_core.output_parsers import StrOutputParser
+from langchain_community.document_loaders import PyPDFDirectoryLoader, DirectoryLoader
+from langchain_community.llms import Ollama
 
-RAG_DATA = "./RAG_data"
+RAG_DATA_LOCATION = "./RAG_data"
+ALLOWED_EXTENSIONS = ['*.pdf', '*.docx', '*.txt']
 class ProcessNotes:
 
     def __init__(self, model_name):
         self.llm = Ollama(model=model_name, temperature=0)
-        self.rag_data = RAG_DATA
+        self.rag_data_location = RAG_DATA_LOCATION
+        self.allowed_extensions = ALLOWED_EXTENSIONS
         self.retriever = self.rag_retriever()
     
     def rag_retriever(self):
-        # load PDF
-        loader = PyPDFDirectoryLoader(self.rag_data)
-        pdf_doc = loader.load()
+        documents = []
+        for extension in self.allowed_extensions:
+            loader = DirectoryLoader(self.rag_data_location, glob=extension, show_progress=True)
+            documents += loader.load()
 
         text_splitter = RecursiveCharacterTextSplitter.from_tiktoken_encoder(
             chunk_size=300, chunk_overlap=50
         )
 
         # Make splits
-        splits = text_splitter.split_documents(pdf_doc)
+        splits = text_splitter.split_documents(documents)
         # Index
         vectorstore = Chroma.from_documents(
             documents=splits,
