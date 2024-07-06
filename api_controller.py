@@ -12,12 +12,15 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
 class Notes(BaseModel):
     text: str
 
+
 @app.get("/")
 async def hello():
-   return {"message": "Hello World"}
+    return {"message": "Hello World"}
+
 
 @app.post("/invoke")
 async def summarize(notes: Notes):

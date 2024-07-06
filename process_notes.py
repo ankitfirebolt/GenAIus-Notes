@@ -11,6 +11,8 @@ from langchain.prompts import ChatPromptTemplate
 from langchain import hub
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnablePassthrough
+
+
 class ProcessNotes:
 
     def __init__(self, model_name):
@@ -23,21 +25,23 @@ class ProcessNotes:
         {input_notes}
             """
         return self.llm.invoke(prompt)
-    
+
     def rag_generate(self, input_notes):
-        #load PDF
+        # load PDF
         loader = PyPDFLoader(self.rag_data)
         pdf_doc = loader.load()
-        
+
         text_splitter = RecursiveCharacterTextSplitter.from_tiktoken_encoder(
-            chunk_size=300, 
-            chunk_overlap=50)
-        
+            chunk_size=300, chunk_overlap=50
+        )
+
         # Make splits
         splits = text_splitter.split_documents(pdf_doc)
         # Index
-        vectorstore = Chroma.from_documents(documents=splits, 
-                                            embedding=HuggingFaceEmbeddings(model_name="thenlper/gte-large"))
+        vectorstore = Chroma.from_documents(
+            documents=splits,
+            embedding=HuggingFaceEmbeddings(model_name="thenlper/gte-large"),
+        )
         retriever = vectorstore.as_retriever(search_kwargs={"k": 10})
 
         # Prompt
@@ -51,7 +55,7 @@ class ProcessNotes:
 
         # LLM
         llm = self.llm
-        
+
         rag_chain = (
             {"context": retriever, "question": RunnablePassthrough()}
             | prompt
