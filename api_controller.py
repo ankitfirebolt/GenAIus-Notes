@@ -23,4 +23,5 @@ async def hello():
 async def summarize(notes: Notes):
     process = ProcessNotes("gemma2")
     output = process.generate(notes.text)
-    return {"output": output}
+    rag_output = process.rag_generate(notes.text)
+    return {"output": output, "rag_output": rag_output}

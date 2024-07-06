@@ -19,12 +19,13 @@ pip install -U datasets transformers
 Download and install Ollama onto the available supported platforms (including Windows Subsystem for Linux)
 Fetch available LLM model via ollama pull gemma2
 
-pip install -U datasets transformers
+pip install -U datasets transformers pymupdf
 pip install -U "huggingface_hub[cli]"
 pip install torch torchdata
-
-
+ollama pull mxbai-embed-large
+pip install pypdf
 Setup your Access Token: "export HF_TOKEN=<your-access-token>"
+
 pip install torch torchdata
 pip install fastapi
 fastapi dev api_controller.py
@@ -39,3 +40,5 @@ goto to myapp folder, run:
 npm start
 
 ======
+
+

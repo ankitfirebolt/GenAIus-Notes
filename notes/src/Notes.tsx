@@ -6,11 +6,13 @@ const SERVICE_ENDPOINT = "http://localhost:8000/invoke";
 export default function Notes() {
   const [notes, setNotes] = useState<string>("")
   const [output, setOutput] = useState<string>("")
+  const [ragOutput, setRAGOutput] = useState<string>("")
   const [loading, setLoading] = useState<boolean>(false)
 
   const fetchOutput = async () => {
     setLoading(true);
     setOutput("");
+    setRAGOutput("");
     const response = await fetch(SERVICE_ENDPOINT, {
       method: "POST",
       headers: {
@@ -20,6 +22,7 @@ export default function Notes() {
     });
     const data = await response.json();
     setOutput(data.output);
+    setRAGOutput(data.rag_output);
     setLoading(false);
   };
 
@@ -30,7 +33,8 @@ export default function Notes() {
 
       <br />    
       <PrimaryButton onClick={fetchOutput}>Enter</PrimaryButton>
-      {output && <p>{output}</p>}   
+      {output && <p>{output}</p>}
+      {ragOutput && <p>{ragOutput}</p>}   
       {loading && <Spinner label="Loading..." />}
  </div>
   );
