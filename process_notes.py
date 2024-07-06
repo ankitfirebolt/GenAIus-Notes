@@ -1,34 +1,26 @@
 from langchain_huggingface import HuggingFaceEmbeddings
-from langchain import hub
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import Chroma
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnablePassthrough
-from langchain_community.document_loaders import PyPDFLoader
+from langchain_community.document_loaders import PyPDFLoader, PyPDFDirectoryLoader
 from langchain_community.llms import Ollama
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.prompts import ChatPromptTemplate
-from langchain import hub
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnablePassthrough
 
-
+RAG_DATA = "./RAG_data"
 class ProcessNotes:
 
     def __init__(self, model_name):
         self.llm = Ollama(model=model_name, temperature=0)
-        self.rag_data = "./RAG_data/Pat_Ankit_Thesis.pdf"
-
-    def generate(self, input_notes):
-        # chain = (prompt_template | self.llm | StrOutputParser())
-        prompt = f"""
-        {input_notes}
-            """
-        return self.llm.invoke(prompt)
-
-    def rag_generate(self, input_notes):
+        self.rag_data = RAG_DATA
+        self.retriever = self.rag_retriever()
+    
+    def rag_retriever(self):
         # load PDF
-        loader = PyPDFLoader(self.rag_data)
+        loader = PyPDFDirectoryLoader(self.rag_data)
         pdf_doc = loader.load()
 
         text_splitter = RecursiveCharacterTextSplitter.from_tiktoken_encoder(
@@ -43,6 +35,16 @@ class ProcessNotes:
             embedding=HuggingFaceEmbeddings(model_name="thenlper/gte-large"),
         )
         retriever = vectorstore.as_retriever(search_kwargs={"k": 10})
+        return retriever
+
+    def generate(self, input_notes):
+        # chain = (prompt_template | self.llm | StrOutputParser())
+        prompt = f"""
+        {input_notes}
+            """
+        return self.llm.invoke(prompt)
+    
+    def rag_generate(self, input_notes):
 
         # Prompt
         template = """Answer the question based only on the following context:
@@ -55,6 +57,8 @@ class ProcessNotes:
 
         # LLM
         llm = self.llm
+
+        retriever = self.retriever
 
         rag_chain = (
             {"context": retriever, "question": RunnablePassthrough()}
