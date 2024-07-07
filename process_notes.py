@@ -8,7 +8,9 @@ from langchain_community.document_loaders import PyPDFDirectoryLoader, Directory
 from langchain_community.llms import Ollama
 
 RAG_DATA_LOCATION = "./RAG_data"
-ALLOWED_EXTENSIONS = ['*.pdf', '*.docx', '*.txt']
+ALLOWED_EXTENSIONS = ["*.pdf", "*.docx", "*.txt"]
+
+
 class ProcessNotes:
 
     def __init__(self, model_name):
@@ -16,11 +18,13 @@ class ProcessNotes:
         self.rag_data_location = RAG_DATA_LOCATION
         self.allowed_extensions = ALLOWED_EXTENSIONS
         self.retriever = self.rag_retriever()
-    
+
     def rag_retriever(self):
         documents = []
         for extension in self.allowed_extensions:
-            loader = DirectoryLoader(self.rag_data_location, glob=extension, show_progress=True)
+            loader = DirectoryLoader(
+                self.rag_data_location, glob=extension, show_progress=True
+            )
             documents += loader.load()
 
         text_splitter = RecursiveCharacterTextSplitter.from_tiktoken_encoder(
@@ -43,7 +47,7 @@ class ProcessNotes:
         {input_notes}
             """
         return self.llm.invoke(prompt)
-    
+
     def rag_generate(self, input_notes):
 
         # Prompt
