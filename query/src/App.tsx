@@ -1,9 +1,9 @@
 
 import './App.css';
-import Notes from './Notes';
+import Query from './Query';
 
 function App() {
-  return <Notes />  
+  return <Query />  
 }
 
 export default App;

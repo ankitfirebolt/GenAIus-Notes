@@ -3,8 +3,8 @@ import { useState } from "react";
 
 const SERVICE_ENDPOINT = "http://localhost:8000/invoke";
 
-export default function Notes() {
-  const [notes, setNotes] = useState<string>("")
+export default function Query() {
+  const [query, setQuery] = useState<string>("")
   const [output, setOutput] = useState<string>("")
   const [ragOutput, setRAGOutput] = useState<string>("")
   const [loading, setLoading] = useState<boolean>(false)
@@ -18,7 +18,7 @@ export default function Notes() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ text: notes}),
+      body: JSON.stringify({ text: query}),
     });
     const data = await response.json();
     setOutput(data.output);
@@ -28,8 +28,8 @@ export default function Notes() {
 
   return (
     <div style={{padding: "50px"}} >
-      <h1>Enter Notes:</h1>
-      <TextField label="Notes" multiline onChange={(_ev, value) => setNotes(_ev.currentTarget.value)} rows={20} />
+      <h1>Enter Query:</h1>
+      <TextField label="Query" multiline onChange={(_ev, value) => setQuery(_ev.currentTarget.value)} rows={20} />
 
       <br />    
       <PrimaryButton onClick={fetchOutput}>Enter</PrimaryButton>

@@ -2,7 +2,7 @@
 
 ## Overview
 
-Local-LLM-Gemmma-2 leverages Generative AI, specifically Google's Gemma 2 (9B parameters), for summarizing notes and providing a question-answering system that supports Retrieval-Augmented Generation (RAG) for various document types, including DOCX, PDF, and TXT files. The application runs locally to ensure data privacy and aims to bring the power of LLMs to your laptop.
+Local-LLM-Gemmma-2 leverages Generative AI, specifically Google's Gemma 2 (9B parameters), for summarizing query and providing a question-answering system that supports Retrieval-Augmented Generation (RAG) for various document types, including DOCX, PDF, and TXT files. The application runs locally to ensure data privacy and aims to bring the power of LLMs to your laptop.
 
 ## Features
 

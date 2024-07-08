@@ -9,7 +9,7 @@
 /.pnp
 .pnp.js
 
-notes/node_modules
+query/node_modules
 /source
 
 # testing

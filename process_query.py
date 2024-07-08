@@ -1,5 +1,5 @@
 """
-This module processes notes using the Ollama service, LangChain community loaders,
+This module processes query using the Ollama service, LangChain community loaders,
 and HuggingFace embeddings.
 """
 
@@ -16,14 +16,14 @@ RAG_DATA_LOCATION = "./RAG_data"
 ALLOWED_EXTENSIONS = ["*.pdf", "*.docx", "*.txt"]
 
 
-class ProcessNotes:
+class ProcessQuery:
     """
-    A class to process notes using various AI and NLP tools.
+    A class to process query using various AI and NLP tools.
     """
 
     def __init__(self, model_name):
         """
-        Initialize the ProcessNotes class with a specific model.
+        Initialize the ProcessQuery class with a specific model.
 
         :param model_name: Name of the model to use with Ollama.
         """
@@ -59,21 +59,21 @@ class ProcessNotes:
         retriever = vectorstore.as_retriever(search_kwargs={"k": 10})
         return retriever
 
-    def generate(self, input_notes):
+    def generate(self, input_query):
         """
-        Generate a response based on input notes using the LLM.
+        Generate a response based on input query using the LLM.
 
-        :param input_notes: Input notes to process.
+        :param input_query: Input query to process.
         :return: Generated response.
         """
-        prompt = f"{input_notes}"
+        prompt = f"{input_query}"
         return self.llm.invoke(prompt)
 
-    def rag_generate(self, input_notes):
+    def rag_generate(self, input_query):
         """
-        Generate a response using Retrieval-Augmented Generation based on input notes.
+        Generate a response using Retrieval-Augmented Generation based on input query.
 
-        :param input_notes: Input notes to process.
+        :param input_query: Input query to process.
         :return: Generated response using RAG.
         """
         # Prompt
@@ -97,4 +97,4 @@ class ProcessNotes:
             | StrOutputParser()
         )
 
-        return rag_chain.invoke(input_notes)
+        return rag_chain.invoke(input_query)

@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-from process_notes import ProcessNotes
+from process_query import ProcessQuery
 
 app = FastAPI()
 app.add_middleware(
@@ -13,7 +13,7 @@ app.add_middleware(
 )
 
 
-class Notes(BaseModel):
+class Query(BaseModel):
     text: str
 
 
@@ -23,8 +23,8 @@ async def hello():
 
 
 @app.post("/invoke")
-async def summarize(notes: Notes):
-    process = ProcessNotes("gemma2")
-    output = process.generate(notes.text)
-    rag_output = process.rag_generate(notes.text)
+async def summarize(query: Query):
+    process = ProcessQuery("gemma2")
+    output = process.generate(query.text)
+    rag_output = process.rag_generate(query.text)
     return {"output": output, "rag_output": rag_output}
