@@ -53,6 +53,13 @@ Local-LLM-Gemmma-2 leverages Generative AI, specifically Google's Gemma 2 (9B pa
 
 ## Usage
 
+- Download and install Ollama onto the available supported platforms (including Windows Subsystem for Linux)
+Fetch available LLM model via
+
+```bash
+    ollama pull gemma2
+```
+
 - Navigate to the `myapp` directory and run the app client:
 
     ```bash
@@ -94,8 +101,6 @@ pip install langchain fastapi uvicorn
 pip install langchain_community tiktoken langchain-openai langchainhub chromadb
 pip install -U datasets transformers
 
-Download and install Ollama onto the available supported platforms (including Windows Subsystem for Linux)
-Fetch available LLM model via ollama pull gemma2
 
 pip install -U datasets transformers pymupdf
 pip install -U "huggingface_hub[cli]"
