@@ -98,6 +98,7 @@ For any questions or suggestions, please open an issue or contact the repository
 pip install langchain fastapi uvicorn
 
 pip install langchain_community tiktoken langchainhub chromadb
+
 pip install -U datasets transformers
 
 pip install -U datasets transformers
