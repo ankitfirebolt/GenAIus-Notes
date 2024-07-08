@@ -1,11 +1,7 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-/myapp/node_modules
-/node_modules
 /myenv
-/.virtual_documents
-/.ipynb_checkpoints
 /.pnp
 .pnp.js
 
