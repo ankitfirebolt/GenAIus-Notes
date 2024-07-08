@@ -101,7 +101,6 @@ pip install langchain_community tiktoken langchainhub chromadb
 
 pip install -U datasets transformers
 
-pip install -U datasets transformers
 pip install -U "huggingface_hub[cli]"
 Setup your Access Token: "export HF_TOKEN=<your-access-token>"
 
