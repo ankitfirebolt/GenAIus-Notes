@@ -51,21 +51,20 @@ Local-LLM-Gemmma-2 leverages Generative AI, specifically Google's Gemma 2 (9B pa
     npm install
     ```
 
-5. **Start the application**
-
-    ```bash
-    npm start
-    ```
-
 ## Usage
 
-- Navigate to the `myapp` directory and run the app:
+- Navigate to the `myapp` directory and run the app client:
 
     ```bash
-    cd myapp
+    cd client
     npm start
     ```
+- Run the backend api controller:
 
+    ```bash
+    fastapi dev api_controller.py
+    ```
+    
 - Open your browser and go to `http://localhost:3000` to access the app.
 
 ## Contributing
@@ -90,7 +89,7 @@ Initial List of Dependencies:
 python -m venv myenv
 source myenv/bin/activate 
 
-pip install langchain openai fastapi uvicorn
+pip install langchain fastapi uvicorn
 
 pip install langchain_community tiktoken langchain-openai langchainhub chromadb
 pip install -U datasets transformers
