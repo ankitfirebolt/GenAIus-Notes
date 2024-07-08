@@ -91,7 +91,9 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 For any questions or suggestions, please open an issue or contact the repository owner.
 
 
-Initial List of Dependencies:
+
+
+## Troubleshooting
 
 python -m venv myenv
 source myenv/bin/activate 
@@ -111,9 +113,6 @@ Setup your Access Token: "export HF_TOKEN=<your-access-token>"
 
 
 pip install "unstructured[all-docs]"
-
-
-
 
 pip install torch torchdata
 pip install fastapi
