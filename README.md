@@ -95,37 +95,17 @@ For any questions or suggestions, please open an issue or contact the repository
 
 ## Troubleshooting
 
-python -m venv myenv
-source myenv/bin/activate 
-
 pip install langchain fastapi uvicorn
 
-pip install langchain_community tiktoken langchain-openai langchainhub chromadb
+pip install langchain_community tiktoken langchainhub chromadb
 pip install -U datasets transformers
 
-
-pip install -U datasets transformers pymupdf
+pip install -U datasets transformers
 pip install -U "huggingface_hub[cli]"
-pip install torch torchdata
-ollama pull mxbai-embed-large
-pip install pypdf
 Setup your Access Token: "export HF_TOKEN=<your-access-token>"
 
 
 pip install "unstructured[all-docs]"
-
-pip install torch torchdata
-pip install fastapi
-fastapi dev api_controller.py
-
-nvm install v19.8.1
-nvm use v19.8.1
-
-npx create-react-app myapp
-cd myapp
-
-goto to myapp folder, run:
-npm start
 
 ======
 
