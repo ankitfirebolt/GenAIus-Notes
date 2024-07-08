@@ -25,8 +25,8 @@ Local-LLM-Gemmma-2 leverages Generative AI, specifically Google's Gemma 2 (9B pa
 1. **Clone the repository**
 
     ```bash
-    git clone https://github.com/ankitfirebolt/GenAIus-Notes.git
-    cd GenAIus-Notes
+    git clone https://github.com/ankitfirebolt/Local-LLM-Gemma-2.git
+    cd Local-LLM-Gemma-2
     ```
 
 2. **Create and activate a virtual environment**
