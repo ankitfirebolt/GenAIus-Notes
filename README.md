@@ -1,8 +1,8 @@
-# GenAIus-Notes
+# Local-LLM-Gemma-2
 
 ## Overview
 
-GenAIus-Notes is an advanced Smart Notes App leveraging Generative AI for summarizing notes and providing a question-answering system that supports Retrieval-Augmented Generation (RAG) for various document types including DOCX, PDF, and TXT files. The application runs locally to ensure data privacy and aims to enhance and refine your writing and information retrieval processes.
+Local-LLM-Gemmma-2 leverages Generative AI, specifically Google's Gemma 2 (9B parameters), for summarizing notes and providing a question-answering system that supports Retrieval-Augmented Generation (RAG) for various document types, including DOCX, PDF, and TXT files. The application runs locally to ensure data privacy and aims to bring the power of LLMs to your laptop.
 
 ## Features
 
